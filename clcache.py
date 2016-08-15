@@ -118,7 +118,7 @@ class ManifestSection(object):
         ensureDirectoryExists(self.manifestSectionDir)
         with open(self.manifestPath(manifestHash), 'w') as outFile:
             # Converting namedtuple to JSON via OrderedDict preserves key names and keys order
-            json.dump(manifest._asdict(), outFile, indent=2)
+            json.dump(manifest._asdict(), outFile)
 
     def getManifest(self, manifestHash):
         fileName = self.manifestPath(manifestHash)
@@ -445,7 +445,7 @@ class PersistentJSONDict(object):
     def save(self):
         if self._dirty:
             with open(self._fileName, 'w') as f:
-                json.dump(self._dict, f, sort_keys=True, indent=4)
+                json.dump(self._dict, f)
 
     def __setitem__(self, key, value):
         self._dict[key] = value
